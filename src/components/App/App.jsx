@@ -1,18 +1,20 @@
 
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getError, getIsLoading } from "redux/contactSlice";
-import { fetchContacts } from "redux/operations";
-import { ContactList } from "../ContactList/ContactList";
-import { Filter } from "../Filter/Filter";
-import { ContactForm } from "../Form/Form";
+import { Route, Routes } from "react-router-dom";
 
-import { StyledMainTitle, StyledTitle, Wrapper } from "./App.styled";
+import { useEffect, lazy } from "react";
+import { useDispatch } from "react-redux";
+import { fetchContacts } from "redux/operations";
+
+import { Layout } from "components/Layout";
+
+
+const RegisterPage = lazy(() => import('../../pages/RegisterPage'));
+const LoginPage = lazy(() => import('../../pages/LoginPage'));
+const HomePage = lazy(() => import('../../pages/Home'));
+const Phonebook = lazy(() => import('../../pages/Phonebook'));
 
 const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
 
   useEffect(() => {
     dispatch(fetchContacts())
@@ -20,14 +22,17 @@ const App = () => {
 
 
   return (
-    <Wrapper>
-      <StyledMainTitle>Phonebook</StyledMainTitle>
-      <ContactForm />
-      <StyledTitle>Contact List</StyledTitle>
-      <Filter />
-      {isLoading && !error && <b>Request in progress...</b>}
-      <ContactList />
-    </Wrapper>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/phonebook" element={<Phonebook />} />
+          <Route />
+        </Route>
+      </Routes>
+    </>
   )
 };
 
