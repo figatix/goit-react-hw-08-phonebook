@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { register } from "redux/auth/authOperations";
-import { StyledRegisterForm, StyledRegisterLabel } from "./RegisterForm.styled";
+import { StyledRegisterBtn, StyledRegisterForm, StyledRegisterLabel } from "./RegisterForm.styled";
+
+
 
 
 export const RegisterForm = () => {
@@ -65,7 +67,7 @@ export const RegisterForm = () => {
           onChange={onRegisterInput}
           type="password" name="password" />
       </StyledRegisterLabel>
-      <button type="submit">Register</button>
+      <StyledRegisterBtn type="submit">Register</StyledRegisterBtn>
     </StyledRegisterForm>
   );
 };

@@ -8,7 +8,7 @@ const token = {
     axios.defaults.headers.common.Authorization = `Bearer ${newToken}`;
   },
   clear() {
-    axios.defaults.common.Authorization = '';
+    axios.defaults.headers.common.Authorization = '';
   },
 };
 
@@ -27,3 +27,29 @@ export const register = createAsyncThunk(
     }
   }
 );
+
+export const login = createAsyncThunk(
+  'auth/login',
+  async (existUser, thunkAPI) => {
+    try {
+      const res = await axios.post('/users/login', existUser);
+      console.log('🚀 ~ file: authOperations.js:36 ~ res:', res);
+      token.set(res.data.token);
+      return res.data;
+    } catch (err) {
+      console.log(err);
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
+
+export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    await axios.post('/users/logout');
+    // console.log(res);
+    token.clear();
+  } catch (err) {
+    console.log(err);
+    return thunkAPI.rejectWithValue(err.message);
+  }
+});

@@ -1,20 +1,56 @@
-import { StyledLoginForm, StyledLoginLabel } from "./LoginForm.styled";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "redux/auth/authOperations";
+import { StyledLoginBtn, StyledLoginForm, StyledLoginLabel } from "./LoginForm.styled";
 
 
 export const LoginForm = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const dispatch = useDispatch();
 
+  const onLoginInput = (e) => {
+    const { name, value } = e.target;
+    switch (name) {
+      case 'email': {
+        return setEmail(value)
+      }
+      case 'password': {
+        return setPassword(value)
+      }
+      default: return
+    }
+  }
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault()
+    const existUser = {
+      email,
+      password,
+    }
+
+    dispatch(login(existUser))
+  }
 
   return (
-    <StyledLoginForm autoComplete="off">
+    <StyledLoginForm
+      onSubmit={handleLoginSubmit}
+      autoComplete="off">
       <StyledLoginLabel >
         Email
-        <input type="email" name="email" />
+        <input
+          value={email}
+          onChange={onLoginInput}
+          type="email" name="email" />
       </StyledLoginLabel>
       <StyledLoginLabel >
         Password
-        <input type="password" name="password" />
+        <input
+          value={password}
+          onChange={onLoginInput}
+          type="password" name="password" />
       </StyledLoginLabel>
-      <button type="submit">Login</button>
+      <StyledLoginBtn type="submit">Login</StyledLoginBtn>
     </StyledLoginForm>
   );
 };

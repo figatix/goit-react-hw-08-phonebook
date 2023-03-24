@@ -17,3 +17,16 @@ export const StyledRegisterLabel = styled.label`
   flex-direction: column;
   margin-bottom: 16px;
 `;
+
+export const StyledRegisterBtn = styled.button`
+  width: 100%;
+  height: 32px;
+  background-color: #9348b7;
+  color: #fff;
+
+  transition: background-color 250ms ease-in-out;
+
+  :hover {
+    background-color: #e1341e;
+  }
+`;
