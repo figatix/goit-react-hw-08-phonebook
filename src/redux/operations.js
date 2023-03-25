@@ -1,7 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+// import { useSelector } from 'react-redux';
+// import { selectToken } from './auth/authSelectors';
 
-axios.defaults.baseURL = 'https://6416f8afc1ec6da10991e571.mockapi.io';
+// axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
+// const token = {
+//   set(newToken) {
+//     axios.defaults.headers.common.Authorization = `Bearer ${newToken}`;
+//   },
+//   clear() {
+//     axios.defaults.headers.common.Authorization = '';
+//   },
+// };
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',

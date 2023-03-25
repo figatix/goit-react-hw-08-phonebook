@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { fetchContacts } from "redux/operations";
 
 import { Layout } from "components/Layout";
+import { refreshUser } from "redux/auth/authOperations";
 
 
 const RegisterPage = lazy(() => import('../../pages/RegisterPage'));
@@ -17,6 +18,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(refreshUser())
     dispatch(fetchContacts())
   }, [dispatch])
 

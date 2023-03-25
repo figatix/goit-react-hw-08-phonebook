@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "redux/auth/authOperations";
+import { fetchContacts } from "redux/operations";
 import { StyledLoginBtn, StyledLoginForm, StyledLoginLabel } from "./LoginForm.styled";
 
 
@@ -30,6 +31,7 @@ export const LoginForm = () => {
     }
 
     dispatch(login(existUser))
+    dispatch(fetchContacts())
   }
 
   return (

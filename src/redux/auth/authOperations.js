@@ -18,7 +18,7 @@ export const register = createAsyncThunk(
     console.log('userData', userData);
     try {
       const response = await axios.post('/users/signup', userData);
-      console.log(response);
+      // console.log(response);
       token.set(response.data.token);
       return response.data;
     } catch (error) {
@@ -33,7 +33,7 @@ export const login = createAsyncThunk(
   async (existUser, thunkAPI) => {
     try {
       const res = await axios.post('/users/login', existUser);
-      console.log('🚀 ~ file: authOperations.js:36 ~ res:', res);
+      // console.log('🚀 ~ file: authOperations.js:36 ~ res:', res);
       token.set(res.data.token);
       return res.data;
     } catch (err) {
@@ -53,3 +53,25 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(err.message);
   }
 });
+
+export const refreshUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistToken = state.auth.token;
+
+    if (!persistToken) {
+      console.log(thunkAPI.rejectWithValue('Unable to fetch user'));
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+    token.set(persistToken);
+    try {
+      const res = await axios.get('/users/current');
+      console.log('🚀 ~ file: authOperations.js:69 ~ res:', res);
+      return res.data;
+    } catch (err) {
+      console.log(thunkAPI.rejectWithValue('Unable to fetch user'));
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);

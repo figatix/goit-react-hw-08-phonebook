@@ -19,6 +19,11 @@ const initialState = {
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
+  reducers: {
+    clearContacts(state) {
+      state.contacts = [];
+    },
+  },
   extraReducers: {
     [fetchContacts.pending]: handlePending,
     [fetchContacts.rejected]: handleRejected,
@@ -49,6 +54,8 @@ const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
+
+export const { clearContacts } = contactsSlice.actions;
 
 export const getContactsState = state => state.contacts.contacts;
 export const getIsLoading = state => state.contacts.isLoading;
