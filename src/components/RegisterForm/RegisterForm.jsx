@@ -38,8 +38,8 @@ export const RegisterForm = () => {
       password,
     }
     // console.log(userRegister);
-    dispatch(register(userRegister))
     e.currentTarget.reset()
+    dispatch(register(userRegister))
   }
 
   return (
