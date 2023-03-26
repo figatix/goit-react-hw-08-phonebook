@@ -39,6 +39,7 @@ export const RegisterForm = () => {
     }
     // console.log(userRegister);
     dispatch(register(userRegister))
+    e.currentTarget.reset()
   }
 
   return (

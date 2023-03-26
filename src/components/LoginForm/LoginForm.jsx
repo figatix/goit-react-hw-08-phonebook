@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "redux/auth/authOperations";
+import { selectIsLoggedIn } from "redux/auth/authSelectors";
 import { fetchContacts } from "redux/operations";
 import { StyledLoginBtn, StyledLoginForm, StyledLoginLabel } from "./LoginForm.styled";
 
@@ -9,6 +10,7 @@ export const LoginForm = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn)
 
   const onLoginInput = (e) => {
     const { name, value } = e.target;
@@ -30,8 +32,14 @@ export const LoginForm = () => {
       password,
     }
 
+    console.log("🚀 ~ file: LoginForm.jsx:14 ~ LoginForm ~ isLoggedIn:", isLoggedIn)
+
+
     dispatch(login(existUser))
-    dispatch(fetchContacts())
+    if (isLoggedIn) {
+      dispatch(fetchContacts())
+      e.currentTarget.reset()
+    }
   }
 
   return (
