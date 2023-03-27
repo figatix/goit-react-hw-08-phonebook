@@ -22,7 +22,7 @@ export const register = createAsyncThunk(
       token.set(response.data.token);
       return response.data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -37,7 +37,7 @@ export const login = createAsyncThunk(
       token.set(res.data.token);
       return res.data;
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       return thunkAPI.rejectWithValue(err.message);
     }
   }
@@ -49,7 +49,7 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     // console.log(res);
     token.clear();
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     return thunkAPI.rejectWithValue(err.message);
   }
 });
@@ -61,16 +61,16 @@ export const refreshUser = createAsyncThunk(
     const persistToken = state.auth.token;
 
     if (!persistToken) {
-      console.log(thunkAPI.rejectWithValue('Unable to fetch user'));
+      console.log(thunkAPI.rejectWithValue('Unable to fetch user 1'));
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
     token.set(persistToken);
     try {
       const res = await axios.get('/users/current');
-      console.log('🚀 ~ file: authOperations.js:69 ~ res:', res);
+      // console.log('🚀 ~ file: authOperations.js:69 ~ res:', res);
       return res.data;
     } catch (err) {
-      console.log(thunkAPI.rejectWithValue('Unable to fetch user'));
+      console.log(thunkAPI.rejectWithValue('Unable to fetch user 2'));
       return thunkAPI.rejectWithValue(err.message);
     }
   }

@@ -18,7 +18,7 @@ export const UserMenu = () => {
 
   return (
     <StyledUserMenuWrapper>
-      <StyledUserMenuUsername>{user.email}</StyledUserMenuUsername>
+      <StyledUserMenuUsername>{user.name}</StyledUserMenuUsername>
       <StyledLogoutBtn
         onClick={handleLogout}
         type="button">Logout</StyledLogoutBtn>

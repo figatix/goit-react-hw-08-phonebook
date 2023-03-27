@@ -39,8 +39,15 @@ export const RegisterForm = () => {
     }
     // console.log(userRegister);
     e.currentTarget.reset()
+    // reset()
     dispatch(register(userRegister))
   }
+
+  // const reset = () => {
+  //   setName('')
+  //   setEmail('')
+  //   setPassword('')
+  // }
 
   return (
     <StyledRegisterForm
@@ -66,7 +73,9 @@ export const RegisterForm = () => {
         <input
           value={password}
           onChange={onRegisterInput}
-          type="password" name="password" />
+          type="password" name="password"
+          autoComplete="on"
+        />
       </StyledRegisterLabel>
       <StyledRegisterBtn type="submit">Register</StyledRegisterBtn>
     </StyledRegisterForm>

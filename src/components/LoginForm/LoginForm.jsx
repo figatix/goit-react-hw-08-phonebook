@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "redux/auth/authOperations";
 import { selectIsLoggedIn } from "redux/auth/authSelectors";
-import { fetchContacts } from "redux/operations";
+import { fetchContacts } from "redux/contacts/operations";
+
 import { StyledLoginBtn, StyledLoginForm, StyledLoginLabel } from "./LoginForm.styled";
 
 
@@ -39,8 +40,14 @@ export const LoginForm = () => {
     if (isLoggedIn) {
       dispatch(fetchContacts())
       e.currentTarget.reset()
+      // reset()
     }
   }
+
+  // const reset = () => {
+  //   setEmail('')
+  //   setPassword('')
+  // }
 
   return (
     <StyledLoginForm
@@ -58,7 +65,9 @@ export const LoginForm = () => {
         <input
           value={password}
           onChange={onLoginInput}
-          type="password" name="password" />
+          type="password" name="password"
+          autoComplete="on"
+        />
       </StyledLoginLabel>
       <StyledLoginBtn type="submit">Login</StyledLoginBtn>
     </StyledLoginForm>

@@ -1,14 +1,15 @@
 
 import React from "react";
-import { getFilterState, setFilterState } from "redux/filterSlice";
+import { setFilterState } from "redux/contacts/filterSlice";
 import { StyledFilterInput, StyledFilterInputTitle, StyledFilterLabel } from "./Filter.styled";
 
 import { useDispatch, useSelector } from "react-redux";
+import { selectFilterState } from "redux/contacts/contactSelectors";
 
 
 
 const Filter = () => {
-  const filterState = useSelector(getFilterState)
+  const filterState = useSelector(selectFilterState)
   const dispatch = useDispatch();
 
   const onChangeFilter = ({ target: { value } }) => {

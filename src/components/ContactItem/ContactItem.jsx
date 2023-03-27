@@ -4,7 +4,7 @@ import React from "react";
 import { StyledAddBtn, StyledContactItem } from "./ContactItem.styled";
 import { useDispatch } from 'react-redux'
 
-import { deleteContact } from "redux/operations";
+import { deleteContact } from "redux/contacts/operations";
 
 const ContactItem = ({ personName, personNumber, id }) => {
   const dispatch = useDispatch()

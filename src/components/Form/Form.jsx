@@ -4,15 +4,16 @@ import { StyledForm, StyledInput, StyledInputTitle, StyledLabel } from "./Form.s
 import { StyledAddBtn } from "../ContactItem/ContactItem.styled";
 
 import { useDispatch, useSelector } from 'react-redux'
-import { getContactsState } from "redux/contactSlice";
-import { addContact } from "redux/operations";
+
+import { addContact } from "redux/contacts/operations";
+import { selectContactsState } from "redux/contacts/contactSelectors";
 
 
 const ContactForm = () => {
   const [name, setName] = useState('')
   const [number, setNumber] = useState('')
   const dispatch = useDispatch()
-  const contactsState = useSelector(getContactsState)
+  const contactsState = useSelector(selectContactsState)
 
   const onChangeInput = (e) => {
     const { name, value } = e.target;

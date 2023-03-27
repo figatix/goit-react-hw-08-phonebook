@@ -3,11 +3,13 @@ import { Route, Routes } from "react-router-dom";
 
 import { useEffect, lazy } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchContacts } from "redux/operations";
 
 import { Layout } from "components/Layout";
 import { refreshUser } from "redux/auth/authOperations";
-import { selectIsLoggedIn } from "redux/auth/authSelectors";
+import { selectIsRefreshing } from "redux/auth/authSelectors";
+
+import { RestrictedRoute } from "components/RestrictedRoute";
+import { PrivateRoute } from "components/PrivateRoute";
 
 
 const RegisterPage = lazy(() => import('../../pages/RegisterPage'));
@@ -17,29 +19,50 @@ const Phonebook = lazy(() => import('../../pages/Phonebook'));
 
 const App = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(selectIsLoggedIn)
+  const isRefreshing = useSelector(selectIsRefreshing)
 
   useEffect(() => {
     dispatch(refreshUser())
+  }, [dispatch])
 
-    if (isLoggedIn) {
-      dispatch(fetchContacts())
-    }
-  }, [dispatch, isLoggedIn])
 
+  /*
+  !   В RestrictedRoute і PrivateRoute:
+  ?   component={LoginPage} - це просто пропс, в який ми передаємо посилання на Компонент. Можемо використовувати будь-яку назву.
+  * return isLoggedIn ? <Element /> : <Navigate to={redirectTo} />
+  ? ТАКОЖ, можна кидати так  component={<LoginPage/>} . Тоді в самих компонентах треба правильно рендирити: 
+  * return isLoggedIn ? <Navigate to={redirectTo} /> : component;
+  */
 
   return (
-    <>
+    !isRefreshing && (
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/phonebook" element={<Phonebook />} />
+          <Route path="/register" element={
+            <RestrictedRoute
+              component={RegisterPage}
+            />}
+          />
+          <Route path="/login" element={
+            <RestrictedRoute
+              redirectTo="/phonebook"
+              component={LoginPage}
+            />}
+          />
+
+          <Route path="/phonebook" element={
+            <PrivateRoute
+              redirectTo="/login"
+              component={Phonebook}
+            />}
+          />
+
           <Route />
         </Route>
       </Routes>
-    </>
+    )
+
   )
 };
 

@@ -1,6 +1,6 @@
 
 
-import { getError, getIsLoading } from "redux/contactSlice";
+
 
 
 import styled from 'styled-components'
@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { ContactForm } from "components/Form/Form";
 import { Filter } from "components/Filter/Filter";
 import { ContactList } from "components/ContactList/ContactList";
+import { selectError, selectIsLoading } from 'redux/contacts/contactSelectors';
 
 const Wrapper = styled.div`
   display: flex;
@@ -33,8 +34,8 @@ export { Wrapper, StyledMainTitle, StyledTitle };
 
 export default function Phonebook() {
 
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
 
   return (

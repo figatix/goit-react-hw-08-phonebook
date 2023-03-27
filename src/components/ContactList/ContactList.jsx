@@ -1,15 +1,25 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { ContactItem } from "../ContactItem/ContactItem";
 import { StyledContactList } from "./ContactList.styled";
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectContactsState, selectFilterState } from "redux/contacts/contactSelectors";
+import { fetchContacts } from "redux/contacts/operations";
+import { selectIsLoggedIn } from "redux/auth/authSelectors";
 
-import { getFilterState } from "redux/filterSlice";
-import { getContactsState } from "redux/contactSlice";
+
 
 const ContactList = () => {
-  const filterState = useSelector(getFilterState)
-  const contactsState = useSelector(getContactsState)
+  const filterState = useSelector(selectFilterState)
+  const contactsState = useSelector(selectContactsState)
+  const dispatch = useDispatch()
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(fetchContacts())
+    }
+  }, [dispatch, isLoggedIn])
 
   // useEffect(() => {
   //   const handlerFilterContacts = () => {
