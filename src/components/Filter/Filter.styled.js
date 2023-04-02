@@ -23,6 +23,7 @@ const StyledFilterInput = styled.input`
   font-style: italic;
   font-weight: 700;
   color: #9348b7;
+  border-radius: 5px;
   border: 1px solid #6cb748;
   transition: border 250ms ease-in-out;
 `;

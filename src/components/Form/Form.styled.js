@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import styled from 'styled-components';
 
 const StyledForm = styled.form`
@@ -28,10 +29,11 @@ const StyledInput = styled.input`
   padding: 4px 16px;
   font-weight: 700;
   color: #9348b7;
+  border-radius: 5px;
   border: 1px solid #6cb748;
   transition: border 250ms ease-in-out;
 `;
-const StyledAddBtn = styled.button`
+const StyledAddBtn = styled(Button)`
   width: 100%;
   height: 32px;
   background-color: #9348b7;

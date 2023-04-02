@@ -19,6 +19,7 @@ export const Layout = () => {
   return (
     <Wrapper>
       <AppBar />
+
       <Suspense>
         <Outlet />
 

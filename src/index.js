@@ -6,17 +6,21 @@ import { Provider } from 'react-redux';
 import { persistor, store } from 'redux/store';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter
-         basename="goit-react-hw-08-phonebook"
-        >
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter
+        basename="/goit-react-hw-08-phonebook/"
+        // basename="/"
+      >
+        <React.StrictMode>
           <App />
-        </BrowserRouter>
-      </PersistGate>
-    </Provider>
-  </React.StrictMode>
+          <ToastContainer theme="dark" autoClose={2000} />
+        </React.StrictMode>
+      </BrowserRouter>
+    </PersistGate>
+  </Provider>
 );

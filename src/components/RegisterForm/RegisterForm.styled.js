@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import styled from 'styled-components';
 
 export const StyledRegisterForm = styled.form`
@@ -16,9 +17,10 @@ export const StyledRegisterLabel = styled.label`
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
+  width: 100%;
 `;
 
-export const StyledRegisterBtn = styled.button`
+export const StyledRegisterBtn = styled(Button)`
   width: 100%;
   height: 32px;
   background-color: #9348b7;

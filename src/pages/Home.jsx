@@ -1,3 +1,5 @@
+import { Box, Typography } from "@mui/material";
+
 const styles = {
   container: {
     minHeight: 'calc(100vh - 50px)',
@@ -14,13 +16,13 @@ const styles = {
 
 export default function Home() {
   return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>
+    <Box style={styles.container}>
+      <Typography variant="h1" style={styles.title}>
         Phonebook welcome page{' '}
-        <span role="img" aria-label="Greeting icon">
+        <Box component="span" role="img" aria-label="Greeting icon">
           💁‍♀️
-        </span>
-      </h1>
-    </div>
+        </Box>
+      </Typography>
+    </Box>
   );
 }

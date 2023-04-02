@@ -9,6 +9,7 @@ import { ContactForm } from "components/Form/Form";
 import { Filter } from "components/Filter/Filter";
 import { ContactList } from "components/ContactList/ContactList";
 import { selectError, selectIsLoading } from 'redux/contacts/contactSelectors';
+import { CircularProgress, LinearProgress } from '@mui/material';
 
 const Wrapper = styled.div`
   display: flex;
@@ -40,11 +41,15 @@ export default function Phonebook() {
 
   return (
     <Wrapper>
+
+
       <StyledMainTitle>Phonebook</StyledMainTitle>
       <ContactForm />
       <StyledTitle>Contact List</StyledTitle>
       <Filter />
-      {isLoading && !error && <b>Request in progress...</b>}
+      {isLoading && !error &&
+        <CircularProgress color="secondary" />
+      }
       <ContactList />
     </Wrapper>
   )

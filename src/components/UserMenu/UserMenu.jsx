@@ -21,7 +21,10 @@ export const UserMenu = () => {
       <StyledUserMenuUsername>{user.name}</StyledUserMenuUsername>
       <StyledLogoutBtn
         onClick={handleLogout}
-        type="button">Logout</StyledLogoutBtn>
+        type="button"
+        variant="outlined"
+        color="secondary"
+      >Logout</StyledLogoutBtn>
     </StyledUserMenuWrapper>
   );
 };

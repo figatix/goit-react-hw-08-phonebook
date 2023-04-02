@@ -7,6 +7,7 @@ export const RestrictedRoute = ({ component: Component, redirectTo = '/' }) => {
   console.log("🚀 ~ file: RestrictedRoute.jsx:7 ~ RestrictedRoute ~ isLoggedIn:", isLoggedIn)
 
 
+
   return isLoggedIn ? <Navigate to={redirectTo} /> : <Component />;
 
 }

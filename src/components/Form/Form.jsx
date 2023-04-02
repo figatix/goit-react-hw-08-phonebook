@@ -1,12 +1,13 @@
 
 import React, { useState } from "react";
-import { StyledForm, StyledInput, StyledInputTitle, StyledLabel } from "./Form.styled";
-import { StyledAddBtn } from "../ContactItem/ContactItem.styled";
+import { StyledForm, StyledInput, StyledInputTitle, StyledLabel, StyledAddBtn } from "./Form.styled";
+
 
 import { useDispatch, useSelector } from 'react-redux'
 
 import { addContact } from "redux/contacts/operations";
 import { selectContactsState } from "redux/contacts/contactSelectors";
+import { toast } from "react-toastify";
 
 
 const ContactForm = () => {
@@ -36,11 +37,12 @@ const ContactForm = () => {
     );
 
     if (isExist) {
-      alert(`${name} is already in contacts.`);
+      toast.error(`${name} is already in contacts.`)
       return;
     }
 
     dispatch(addContact(newContact))
+    toast.success(`${name} was added to contacts.`)
     reset()
   }
 
@@ -78,7 +80,11 @@ const ContactForm = () => {
         />
       </StyledLabel>
 
-      <StyledAddBtn type="submit">Add contact</StyledAddBtn>
+      <StyledAddBtn
+        type="submit"
+        variant="contained"
+        color="secondary"
+      >Add contact</StyledAddBtn>
     </StyledForm>
   )
 }

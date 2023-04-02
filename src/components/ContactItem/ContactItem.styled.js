@@ -1,6 +1,9 @@
+import { Button } from '@mui/material';
 import styled from 'styled-components';
 
 const StyledContactItem = styled.li`
+  display: inline-flex;
+  justify-content: space-between;
   font-size: 16px;
   font-weight: 700;
   color: #ba1972;
@@ -8,9 +11,13 @@ const StyledContactItem = styled.li`
   :nth-child(even) {
     color: #2225dd;
   }
+
+  /* :hover {
+    background-color: rgb(249 168 214 / 57%);
+  } */
 `;
 
-const StyledAddBtn = styled.button`
+const StyledAddBtn = styled(Button)`
   font-size: 16px;
   height: 24px;
   padding: 0 12px;

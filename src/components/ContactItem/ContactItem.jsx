@@ -15,7 +15,10 @@ const ContactItem = ({ personName, personNumber, id }) => {
       <StyledAddBtn
 
         onClick={() => dispatch(deleteContact(id))}
-        type="button">Delete</StyledAddBtn>
+        type="button"
+        variant="outlined"
+        color="error"
+      >Delete</StyledAddBtn>
     </StyledContactItem>
   )
 }

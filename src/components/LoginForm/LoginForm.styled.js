@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import styled from 'styled-components';
 
 export const StyledLoginForm = styled.form`
@@ -16,9 +17,10 @@ export const StyledLoginLabel = styled.label`
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
+  width: 100%;
 `;
 
-export const StyledLoginBtn = styled.button`
+export const StyledLoginBtn = styled(Button)`
   width: 100%;
   height: 32px;
   background-color: #9348b7;

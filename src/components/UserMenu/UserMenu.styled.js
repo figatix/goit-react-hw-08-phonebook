@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import styled from 'styled-components';
 
 export const StyledUserMenuWrapper = styled.div`
@@ -8,9 +9,10 @@ export const StyledUserMenuWrapper = styled.div`
 
 export const StyledUserMenuUsername = styled.div`
   font-weight: 700;
+  color: #2a363b;
 `;
 
-export const StyledLogoutBtn = styled.button`
+export const StyledLogoutBtn = styled(Button)`
   width: 100%;
   height: 32px;
   background-color: #9348b7;

@@ -5,6 +5,7 @@ import { StyledFilterInput, StyledFilterInputTitle, StyledFilterLabel } from "./
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectFilterState } from "redux/contacts/contactSelectors";
+import { Button } from "@mui/material";
 
 
 
@@ -16,6 +17,10 @@ const Filter = () => {
     dispatch(setFilterState(value))
   }
 
+  const onClearFilterBtn = () => {
+    dispatch(setFilterState(''))
+  }
+
   return (
     <StyledFilterLabel>
       <StyledFilterInputTitle>Find contacts by name</StyledFilterInputTitle>
@@ -25,6 +30,14 @@ const Filter = () => {
         onChange={onChangeFilter}
         type="text"
       />
+
+      <Button
+        type="button"
+        variant="outlined"
+        color="error"
+        onClick={onClearFilterBtn}
+      >Clear filter</Button>
+
     </StyledFilterLabel>
   )
 }
