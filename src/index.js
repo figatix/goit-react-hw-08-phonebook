@@ -14,17 +14,17 @@ import { theme } from 'theam';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
-    <PersistGate loading={null} persistor={persistor}>
-      <BrowserRouter
-        // basename="/goit-react-hw-08-phonebook/"
-        basename="/"
-      >
-        <React.StrictMode>
-          <App />
-          <ToastContainer theme="dark" autoClose={2000} />
-        </React.StrictMode>
-      </BrowserRouter>
-    </PersistGate>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter
+          basename="/goit-react-hw-08-phonebook/"
+          // basename="/"
+        >
+          <React.StrictMode>
+            <App />
+            <ToastContainer theme="dark" autoClose={2000} />
+          </React.StrictMode>
+        </BrowserRouter>
+      </PersistGate>
     </ThemeProvider>
   </Provider>
 );
