@@ -9,7 +9,7 @@ import { ContactForm } from "components/Form/Form";
 import { Filter } from "components/Filter/Filter";
 import { ContactList } from "components/ContactList/ContactList";
 import { selectError, selectIsLoading } from 'redux/contacts/contactSelectors';
-import { CircularProgress, LinearProgress } from '@mui/material';
+import { CircularProgress} from '@mui/material';
 
 const Wrapper = styled.div`
   display: flex;
