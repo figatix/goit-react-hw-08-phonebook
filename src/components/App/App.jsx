@@ -58,7 +58,7 @@ const App = () => {
             />}
           />
 
-          <Route />
+          <Route path="*" element={<div>Not found</div>} />
         </Route>
       </Routes>
     )

@@ -9,7 +9,7 @@ import { ContactForm } from "components/Form/Form";
 import { Filter } from "components/Filter/Filter";
 import { ContactList } from "components/ContactList/ContactList";
 import { selectError, selectIsLoading } from 'redux/contacts/contactSelectors';
-import { CircularProgress} from '@mui/material';
+import { CircularProgress } from '@mui/material';
 
 const Wrapper = styled.div`
   display: flex;
@@ -43,7 +43,7 @@ export default function Phonebook() {
     <Wrapper>
 
 
-      <StyledMainTitle>Phonebook</StyledMainTitle>
+      <StyledMainTitle>Create a contact</StyledMainTitle>
       <ContactForm />
       <StyledTitle>Contact List</StyledTitle>
       <Filter />

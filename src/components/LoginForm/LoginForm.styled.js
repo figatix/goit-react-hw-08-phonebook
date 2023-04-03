@@ -1,4 +1,5 @@
 import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const StyledLoginForm = styled.form`
@@ -22,13 +23,24 @@ export const StyledLoginLabel = styled.label`
 
 export const StyledLoginBtn = styled(Button)`
   width: 100%;
-  height: 32px;
-  background-color: #9348b7;
-  color: #fff;
+  /* height: 32px; */
+  /* background-color: #9348b7; */
+  /* color: #fff; */
 
-  transition: background-color 250ms ease-in-out;
+  /* transition: background-color 250ms ease-in-out;
 
   :hover {
     background-color: #e1341e;
-  }
+  } */
 `;
+
+export const StyledRouterLink = styled(Link)`
+  text-decoration: underline;
+`;
+
+export const styles = {
+  routerLink: {
+    textDecoration: 'underline',
+    color: 'secondary.light',
+  },
+};

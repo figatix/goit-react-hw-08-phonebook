@@ -1,4 +1,4 @@
-import { Toolbar, } from "@mui/material";
+import { Toolbar } from "@mui/material";
 // import { Button, IconButton, Typography } from "@mui/material";
 // import MenuIcon from '@mui/icons-material/Menu';
 import { default as AppBarMUI } from '@mui/material/AppBar';
@@ -10,7 +10,14 @@ import { UserMenu } from "components/UserMenu/UserMenu";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "redux/auth/authSelectors";
 
+import { Box, Container} from '@mui/material';
+// import MenuIcon from '@mui/icons-material/Menu';
+// import { MobileMenu } from 'components/MobileMenu';
+
 import styled from "styled-components"
+import { styles } from './AppBar.styled';
+// import { useState } from "react";
+import { Logo } from "components/Logo/Logo";
 
 // export const Header = styled.header`
 //   display:flex;
@@ -28,36 +35,58 @@ export const StyledToolbar = styled(Toolbar)`
 export const AppBar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn)
 
+  // const [mobileOpen, setMobileOpen] = useState(false);
+
+  // const handleDrawerToggle = () => {
+  //   setMobileOpen(!mobileOpen);
+  // };
 
   return (
-    // <Header>
-    //   <Navigation />
-    //   {isLoggedIn ? <UserMenu /> : <AuthNav />}
-    // </Header>
-
-
-    // *** MUI
-    // <Box>
-    <AppBarMUI position="static" color="transparent">
-      <StyledToolbar>
-        {/* <IconButton
-            size="large"
-            edge="start"
+<AppBarMUI position="relative" color="transparent">
+      <Container 
+      
+      >
+        <Box sx={styles.headerContentWrap}>
+          {/* <IconButton
             color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={styles.menuIconBtn}
           >
             <MenuIcon />
           </IconButton> */}
-        <Navigation />
-        {isLoggedIn ? <UserMenu /> : <AuthNav />}
-        {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button> */}
-      </StyledToolbar>
+          {/* {mobileOpen && <MobileMenu onMenuClose={handleDrawerToggle} />} */}
+          <Logo />
+          <Box sx={styles.navbarWrap}>
+            <Navigation />
+            {isLoggedIn ? <UserMenu /> : <AuthNav />}
+          </Box>
+        </Box>
+      </Container>
     </AppBarMUI>
-    // </Box>
+
+    // *** MUI
+    // <AppBarMUI position="static" color="transparent">
+    //   <StyledToolbar>
+    //     {/* <IconButton
+    //         size="large"
+    //         edge="start"
+    //         color="inherit"
+    //         aria-label="menu"
+    //         sx={{ mr: 2 }}
+    //       >
+    //         <MenuIcon />
+    //       </IconButton> */}
+    //     <Navigation />
+    //     {isLoggedIn ? <UserMenu /> : <AuthNav />}
+    //     {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+    //         News
+    //       </Typography>
+    //       <Button color="inherit">Login</Button> */}
+    //   </StyledToolbar>
+    // </AppBarMUI>
+
   )
 }
 

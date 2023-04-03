@@ -13,7 +13,7 @@ export const StyledUserMenuUsername = styled.div`
 `;
 
 export const StyledLogoutBtn = styled(Button)`
-  width: 100%;
+  /* width: 100%; */
   height: 32px;
   background-color: #9348b7;
   color: #fff;

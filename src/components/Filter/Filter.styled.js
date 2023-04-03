@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { TextField } from '@mui/material';
+
 const StyledFilterLabel = styled.label`
   display: flex;
   flex-direction: column;
@@ -29,3 +31,25 @@ const StyledFilterInput = styled.input`
 `;
 
 export { StyledFilterLabel, StyledFilterInputTitle, StyledFilterInput };
+
+// ??????
+
+export const StyledFilterContainer = styled.label`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+`;
+
+export const Field = styled(TextField)`
+  width: 300px;
+  font-style: italic;
+
+  & label {
+    color: rgba(0, 0, 0, 0.6);
+    margin-left: 8px;
+  }
+
+  & input {
+    margin-left: 8px;
+  }
+`;

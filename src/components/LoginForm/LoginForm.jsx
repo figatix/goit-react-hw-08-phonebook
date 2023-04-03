@@ -1,20 +1,30 @@
 
-import { TextField } from "@mui/material";
+import { IconButton, InputAdornment, Link, TextField } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "redux/auth/authOperations";
 import { selectIsLoggedIn } from "redux/auth/authSelectors";
 import { fetchContacts } from "redux/contacts/operations";
 
-import { StyledLoginBtn, StyledLoginForm, StyledLoginLabel } from "./LoginForm.styled";
+import { StyledLoginBtn, StyledLoginForm, StyledLoginLabel, styles } from "./LoginForm.styled";
 import { toast } from "react-toastify";
+
+import { Link as RouterLink } from "react-router-dom";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 
 export const LoginForm = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false);
+
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn)
+
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
 
   const onLoginInput = (e) => {
@@ -49,44 +59,97 @@ export const LoginForm = () => {
   }
 
   return (
-    <StyledLoginForm
-      onSubmit={handleLoginSubmit}
-      autoComplete="off">
-      <StyledLoginLabel >
-        <TextField
-          fullWidth
-          required
-          label="Email"
-          variant="filled"
+    <>
+      <StyledLoginForm
+        onSubmit={handleLoginSubmit}
+        autoComplete="off">
+        <StyledLoginLabel >
+          <TextField
+            fullWidth
+            required
+            label="Email"
+            variant="filled"
+            color="secondary"
+            value={email}
+            onChange={onLoginInput}
+            type="email"
+            name="email"
+          />
+        </StyledLoginLabel>
+        <StyledLoginLabel >
+          <TextField
+            required
+            label="Password"
+            type={showPassword ? 'text' : 'password'}
+            autoComplete="current-password"
+            variant="filled"
+            color="secondary"
+            value={password}
+            onChange={onLoginInput}
+            name="password"
+            InputProps={{
+              endAdornment: <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  edge="end"
+                >
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>,
+            }}
+
+          />
+        </StyledLoginLabel>
+
+        {/* <StyledLoginLabel >
+          <FilledInput
+            type={showPassword ? 'text' : 'password'}
+            label="Password2"
+            placeholder='qwe'
+            aria-label='qwe123'
+            color='secondary'
+            required
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  edge="end"
+                >
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </StyledLoginLabel> */}
+
+
+
+
+        <StyledLoginBtn
+          type="submit"
+          variant="contained"
           color="secondary"
-          value={email}
-          onChange={onLoginInput}
-          type="email"
-          name="email"
-        />
-      </StyledLoginLabel>
-      <StyledLoginLabel >
-        <TextField
-          required
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-          variant="filled"
-          color="secondary"
-          value={password}
-          onChange={onLoginInput}
-          name="password"
-        />
-      </StyledLoginLabel>
-      <StyledLoginBtn
-        type="submit"
-        variant="contained"
-        color="secondary"
-      >Login</StyledLoginBtn>
-      {/* <StyledLoginBtn type="submit">Login</StyledLoginBtn>       */}
-    </StyledLoginForm>
+        >Login</StyledLoginBtn>
+        {/* <StyledLoginBtn type="submit">Login</StyledLoginBtn>       */}
+      </StyledLoginForm>
+
+      <Link component={RouterLink}
+        sx={styles.routerLink}
+        to="/register">
+        Don't have an account? Register
+      </Link>
+    </>
+
   );
 };
+
+
+
+
+
+
 
 
 

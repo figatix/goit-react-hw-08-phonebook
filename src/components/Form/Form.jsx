@@ -1,13 +1,14 @@
 
 import React, { useState } from "react";
-import { StyledForm, StyledInput, StyledInputTitle, StyledLabel, StyledAddBtn } from "./Form.styled";
-
+// import {  StyledInput, StyledInputTitle, StyledLabel } from "./Form.styled";
+import { StyledForm, StyledAddBtn } from "./Form.styled";
 
 import { useDispatch, useSelector } from 'react-redux'
 
 import { addContact } from "redux/contacts/operations";
 import { selectContactsState } from "redux/contacts/contactSelectors";
 import { toast } from "react-toastify";
+import { FormControl, InputLabel, OutlinedInput } from "@mui/material";
 
 
 const ContactForm = () => {
@@ -53,39 +54,107 @@ const ContactForm = () => {
 
   return (
 
-    <StyledForm onSubmit={handlerSubmitForm}>
-      <StyledLabel>
-        <StyledInputTitle>Name of contact</StyledInputTitle>
-        <StyledInput
-          name="name"
-          type="text"
-          onChange={onChangeInput}
-          value={name}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-        />
-      </StyledLabel>
+    <>
 
-      <StyledLabel>
-        <StyledInputTitle>Number</StyledInputTitle>
-        <StyledInput
-          name="number"
-          type="tel"
-          value={number}
-          onChange={onChangeInput}
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-        />
-      </StyledLabel>
 
-      <StyledAddBtn
-        type="submit"
-        variant="contained"
-        color="secondary"
-      >Add contact</StyledAddBtn>
-    </StyledForm>
+
+      <StyledForm onSubmit={handlerSubmitForm}>
+
+        <FormControl
+          sx={{ mb: 1 }}
+          size="small"
+        >
+          <InputLabel htmlFor="input-contact-name" color="secondary">
+            Name of contact
+          </InputLabel>
+          <OutlinedInput
+            fullWidth
+            color="secondary"
+            sx={{
+              // bgcolor: 'success.light',
+
+              color: "success",
+            }}
+            label='Name of contact'
+            id="input-contact-name"
+            name="name"
+            type="text"
+            onChange={onChangeInput}
+            value={name}
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+          />
+        </FormControl>
+
+        <FormControl
+          sx={{ mb: 1 }}
+          size="small"
+
+        >
+          <InputLabel htmlFor="input-contact-number" color="secondary">
+            Phone number
+          </InputLabel>
+          <OutlinedInput
+            fullWidth
+            color="secondary"
+            // sx={{ }}
+            label='Phone number'
+            id="input-contact-number"
+            name="number"
+            type="tel"
+            value={number}
+            onChange={onChangeInput}
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+          />
+        </FormControl>
+
+        <StyledAddBtn
+          type="submit"
+          variant="contained"
+          color="secondary"
+        >Add contact</StyledAddBtn>
+      </StyledForm>
+
+      {/* *************************************************** */}
+      {/* 
+      <StyledForm onSubmit={handlerSubmitForm}>
+        <StyledLabel>
+          <StyledInputTitle>Name of contact</StyledInputTitle>
+          <StyledInput
+            name="name"
+            type="text"
+            onChange={onChangeInput}
+            value={name}
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+          />
+        </StyledLabel>
+
+        <StyledLabel>
+          <StyledInputTitle>Number</StyledInputTitle>
+          <StyledInput
+            name="number"
+            type="tel"
+            value={number}
+            onChange={onChangeInput}
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+          />
+        </StyledLabel>
+
+        <StyledAddBtn
+          type="submit"
+          variant="contained"
+          color="secondary"
+        >Add contact</StyledAddBtn>
+      </StyledForm> */}
+    </>
+
   )
 }
 
