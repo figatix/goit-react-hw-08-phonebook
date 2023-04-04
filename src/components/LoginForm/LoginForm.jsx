@@ -47,8 +47,6 @@ export const LoginForm = () => {
       password,
     }
 
-    console.log("🚀 ~ file: LoginForm.jsx:14 ~ LoginForm ~ isLoggedIn:", isLoggedIn)
-
     dispatch(login(existUser))
     if (isLoggedIn) {
       toast(`Hello, ${email}`)
@@ -102,37 +100,12 @@ export const LoginForm = () => {
           />
         </StyledLoginLabel>
 
-        {/* <StyledLoginLabel >
-          <FilledInput
-            type={showPassword ? 'text' : 'password'}
-            label="Password2"
-            placeholder='qwe'
-            aria-label='qwe123'
-            color='secondary'
-            required
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  edge="end"
-                >
-                  {showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </StyledLoginLabel> */}
-
-
-
-
         <StyledLoginBtn
           type="submit"
           variant="contained"
           color="secondary"
         >Login</StyledLoginBtn>
-        {/* <StyledLoginBtn type="submit">Login</StyledLoginBtn>       */}
+
       </StyledLoginForm>
 
       <Link component={RouterLink}

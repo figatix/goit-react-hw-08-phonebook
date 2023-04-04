@@ -21,16 +21,6 @@ const ContactList = () => {
     }
   }, [dispatch, isLoggedIn])
 
-  // useEffect(() => {
-  //   const handlerFilterContacts = () => {
-  //     const normalizeName = filterState?.toLowerCase().trim()
-  //     const isContacts = (contactsState.length !== 0);
-  //     return isContacts && contactsState.filter(person => person.name?.toLowerCase().includes(normalizeName))
-  //   }
-  //   handlerFilterContacts();
-  // }, [handlerFilterContacts])
-
-
   const handlerFilterContacts = () => {
     const normalizeName = filterState?.toLowerCase().trim()
     const isContacts = (contactsState.length !== 0);

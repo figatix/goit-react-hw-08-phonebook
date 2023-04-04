@@ -2,10 +2,7 @@
 import { StyledNavLink } from "./AuthNav.styled"
 
 
-
 export const AuthNav = () => {
-
-
   return (
     <div>
       <StyledNavLink to="/register">

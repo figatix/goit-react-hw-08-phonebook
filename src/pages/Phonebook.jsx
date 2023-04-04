@@ -1,8 +1,5 @@
 
 
-
-
-
 import styled from 'styled-components'
 import { useSelector } from "react-redux";
 import { ContactForm } from "components/Form/Form";
@@ -31,18 +28,12 @@ const StyledTitle = styled.h2`
   margin-bottom: 12px;
 `;
 
-export { Wrapper, StyledMainTitle, StyledTitle };
-
 export default function Phonebook() {
-
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
-
   return (
     <Wrapper>
-
-
       <StyledMainTitle>Create a contact</StyledMainTitle>
       <ContactForm />
       <StyledTitle>Contact List</StyledTitle>

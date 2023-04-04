@@ -1,7 +1,6 @@
 
 import React from "react";
 import { setFilterState } from "redux/contacts/filterSlice";
-// import { StyledFilterInput, StyledFilterInputTitle, StyledFilterLabel } from "./Filter.styled";
 import { StyledFilterContainer } from "./Filter.styled";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -30,25 +29,6 @@ export const Filter = () => {
 
   return (
     <>
-      {/* <StyledFilterLabel>
-        <StyledFilterInputTitle>Find contacts by name</StyledFilterInputTitle>
-        <StyledFilterInput
-          name="filter"
-          value={filterState}
-          onChange={onChangeFilter}
-          type="text"
-
-        />
-
-        <Button
-          type="button"
-          variant="outlined"
-          color="error"
-          onClick={onClearFilterBtn}
-        >Clear filter</Button>
-
-      </StyledFilterLabel> */}
-
       <StyledFilterContainer>
         <Field
           id="filter"

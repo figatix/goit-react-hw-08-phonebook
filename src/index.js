@@ -9,7 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ThemeProvider } from '@mui/material';
-import { theme } from 'theam';
+import { theme } from 'theme';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>

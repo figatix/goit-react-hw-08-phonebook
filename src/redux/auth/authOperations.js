@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 const token = {
   set(newToken) {
@@ -18,11 +18,9 @@ export const register = createAsyncThunk(
     console.log('userData', userData);
     try {
       const response = await axios.post('/users/signup', userData);
-      // console.log(response);
       token.set(response.data.token);
       return response.data;
     } catch (error) {
-      // console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -33,11 +31,9 @@ export const login = createAsyncThunk(
   async (existUser, thunkAPI) => {
     try {
       const res = await axios.post('/users/login', existUser);
-      // console.log('🚀 ~ file: authOperations.js:36 ~ res:', res);
       token.set(res.data.token);
       return res.data;
     } catch (err) {
-      // console.log(err);
       return thunkAPI.rejectWithValue(err.message);
     }
   }
@@ -46,10 +42,8 @@ export const login = createAsyncThunk(
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/users/logout');
-    // console.log(res);
     token.clear();
   } catch (err) {
-    // console.log(err);
     return thunkAPI.rejectWithValue(err.message);
   }
 });
@@ -67,7 +61,6 @@ export const refreshUser = createAsyncThunk(
     token.set(persistToken);
     try {
       const res = await axios.get('/users/current');
-      // console.log('🚀 ~ file: authOperations.js:69 ~ res:', res);
       return res.data;
     } catch (err) {
       console.log(thunkAPI.rejectWithValue('Unable to fetch user 2'));

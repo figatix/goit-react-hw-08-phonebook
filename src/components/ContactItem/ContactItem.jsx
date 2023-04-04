@@ -1,28 +1,48 @@
 import PropTypes from "prop-types";
-import React from "react";
-import { StyledAddBtn, StyledContactItem } from "./ContactItem.styled";
+import React, { useState } from "react";
+import { StyledDeleteBtn, StyledContactItem } from "./ContactItem.styled";
 import { useDispatch } from 'react-redux'
 import { deleteContact } from "redux/contacts/operations";
-
-// import { Avatar, Box, IconButton, Tooltip, Typography } from '@mui/material';
-// import EditIcon from '@mui/icons-material/Edit';
-// import DeleteIcon from '@mui/icons-material/Delete';
+import { Box } from "@mui/material";
+import { ModalWindow } from "components/ModalWindow/ModalWindow";
+import { UpdateContactForm } from "components/UpdateContactForm/UpdateContactForm";
 
 
 const ContactItem = ({ personName, personNumber, id }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const dispatch = useDispatch()
 
-  return (
-    <StyledContactItem>
-      {personName}: {personNumber}
-      <StyledAddBtn
+  const handleModalShow = () => {
+    setIsModalOpen(!isModalOpen)
+  }
 
-        onClick={() => dispatch(deleteContact(id))}
-        type="button"
-        variant="outlined"
-        color="error"
-      >Delete</StyledAddBtn>
-    </StyledContactItem>
+  return (
+    <>
+      <StyledContactItem>
+        {personName}: {personNumber}
+
+        <Box>
+          <StyledDeleteBtn
+            onClick={handleModalShow}
+            type="button"
+            variant="outlined"
+            color="error"
+          >edit</StyledDeleteBtn>
+
+          <StyledDeleteBtn
+            onClick={() => dispatch(deleteContact(id))}
+            type="button"
+            variant="outlined"
+            color="error"
+          >Delete</StyledDeleteBtn>
+        </Box>
+      </StyledContactItem>
+      {isModalOpen &&
+        <ModalWindow onCloseModal={handleModalShow}>
+          <UpdateContactForm onCloseModal={handleModalShow} id={id} />
+        </ModalWindow>
+      }
+    </>
   )
 }
 

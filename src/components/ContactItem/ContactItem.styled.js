@@ -7,17 +7,17 @@ const StyledContactItem = styled.li`
   font-size: 16px;
   font-weight: 700;
   color: #ba1972;
+  padding: 8px;
+  border: solid 1px #6cb748;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px 1px #6cb748;
 
   :nth-child(even) {
     color: #2225dd;
   }
-
-  /* :hover {
-    background-color: rgb(249 168 214 / 57%);
-  } */
 `;
 
-const StyledAddBtn = styled(Button)`
+const StyledDeleteBtn = styled(Button)`
   font-size: 16px;
   height: 24px;
   padding: 0 12px;
@@ -33,7 +33,7 @@ const StyledAddBtn = styled(Button)`
   }
 `;
 
-export { StyledContactItem, StyledAddBtn };
+export { StyledContactItem, StyledDeleteBtn };
 
 export const styles = {
   item: {

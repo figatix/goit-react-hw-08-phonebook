@@ -14,7 +14,7 @@ export const Navigation = () => {
       </StyledNavLink>
       {isLoggedIn &&
         <StyledNavLink to="/phonebook">
-          Phonebook
+          Contacts
         </StyledNavLink>
       }
 

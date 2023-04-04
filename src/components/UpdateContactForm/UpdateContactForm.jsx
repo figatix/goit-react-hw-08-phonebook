@@ -1,20 +1,27 @@
 
-import React, { useState } from "react";
-import { StyledForm, StyledAddBtn } from "./Form.styled";
+import React, { useEffect, useState } from "react";
+import { StyledForm, styles } from "./UpdateContactForm.styled";
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { addContact } from "redux/contacts/operations";
+import { updateContact } from "redux/contacts/operations";
 import { selectContactsState } from "redux/contacts/contactSelectors";
 import { toast } from "react-toastify";
-import { FormControl, InputLabel, OutlinedInput } from "@mui/material";
+import { Box, Button, FormControl, InputLabel, OutlinedInput } from "@mui/material";
 
 
-const ContactForm = () => {
+export const UpdateContactForm = ({ id, onCloseModal }) => {
   const [name, setName] = useState('')
   const [number, setNumber] = useState('')
   const dispatch = useDispatch()
   const contactsState = useSelector(selectContactsState)
+
+  useEffect(() => {
+    const { name, number } = contactsState.find(el => el.id === id)
+    setName(name)
+    setNumber(number)
+  }, [contactsState, id])
+
 
   const onChangeInput = (e) => {
     const { name, value } = e.target;
@@ -27,24 +34,30 @@ const ContactForm = () => {
 
   const handlerSubmitForm = (e) => {
     e.preventDefault();
-    const newContact = {
+    const updatedContact = {
       name,
       number,
+      id,
     }
 
-    const isExist = contactsState.find(
+    const isExistName = contactsState.find(
       person => person.name.toLowerCase() === name.toLowerCase().trim()
     );
+    const isExistNumber = contactsState.find(
+      person => person.number === number
+    );
 
-    if (isExist) {
+    if (isExistName && isExistNumber) {
       toast.error(`${name} is already in contacts.`)
       return;
     }
 
-    dispatch(addContact(newContact))
-    toast.success(`${name} was added to contacts.`)
+    dispatch(updateContact(updatedContact))
+    toast.success(`${name} was updated.`)
     reset()
+    onCloseModal()
   }
+
 
   const reset = () => {
     setName('')
@@ -65,9 +78,6 @@ const ContactForm = () => {
           <OutlinedInput
             fullWidth
             color="secondary"
-            sx={{
-              color: "success",
-            }}
             label='Name of contact'
             id="input-contact-name"
             name="name"
@@ -83,7 +93,6 @@ const ContactForm = () => {
         <FormControl
           sx={{ mb: 1 }}
           size="small"
-
         >
           <InputLabel htmlFor="input-contact-number" color="secondary">
             Phone number
@@ -103,16 +112,19 @@ const ContactForm = () => {
           />
         </FormControl>
 
-        <StyledAddBtn
-          type="submit"
-          variant="contained"
-          color="secondary"
-        >Add contact</StyledAddBtn>
+
+        <Box sx={styles.btnBox}>
+          <Button type="submit" variant="contained" color="secondary">
+            Update Contact
+          </Button>
+          <Button type="button" variant="outlined" color="secondary" onClick={() => onCloseModal()}>
+            Cancel
+          </Button>
+        </Box>
+
       </StyledForm>
     </>
 
   )
 }
-
-export { ContactForm };
 

@@ -23,15 +23,6 @@ export const StyledLoginLabel = styled.label`
 
 export const StyledLoginBtn = styled(Button)`
   width: 100%;
-  /* height: 32px; */
-  /* background-color: #9348b7; */
-  /* color: #fff; */
-
-  /* transition: background-color 250ms ease-in-out;
-
-  :hover {
-    background-color: #e1341e;
-  } */
 `;
 
 export const StyledRouterLink = styled(Link)`
