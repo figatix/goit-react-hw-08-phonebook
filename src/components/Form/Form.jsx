@@ -25,7 +25,7 @@ const ContactForm = () => {
     }
   }
 
-  const handlerSubmitForm = (e) => {
+  const handlerSubmitForm = async (e) => {
     e.preventDefault();
     const newContact = {
       name,
