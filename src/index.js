@@ -16,8 +16,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ThemeProvider theme={theme}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter
-          // basename="/goit-react-hw-08-phonebook/"
-          basename="/"
+          basename="/goit-react-hw-08-phonebook/"
+          // basename="/"
         >
           <React.StrictMode>
             <App />
