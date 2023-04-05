@@ -3,11 +3,8 @@ import { FormHelperText, IconButton, InputAdornment, Link, TextField, Typography
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "redux/auth/authOperations";
-// import { selectIsLoggedIn } from "redux/auth/authSelectors";
-// import { fetchContacts } from "redux/contacts/operations";
 
 import { StyledLoginBtn, StyledLoginForm, StyledLoginLabel, styles } from "./LoginForm.styled";
-// import { toast } from "react-toastify";
 
 import { Link as RouterLink } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -16,64 +13,36 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
 import { yupSchema } from "./inputYupValidation";
+import { toast } from "react-toastify";
+
 
 
 export const LoginForm = () => {
-  // const [email, setEmail] = useState('')
-  // const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false);
-
   const dispatch = useDispatch();
-  // const isLoggedIn = useSelector(selectIsLoggedIn)
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm({ resolver: yupResolver(yupSchema) });
 
-  const onSubmitReactHookForm = data => {
-    console.log(data);
-    dispatch(login(data))
-    reset()
-
+  const onSubmitReactHookForm = async data => {
+    try {
+      const res = await dispatch(login(data)).unwrap();
+      console.log(res);
+      toast.success(`User ${res.user.name} was successfully entered!`)
+      reset()
+    } catch (error) {
+      toast.error(`Something went wrong... ${error}`)
+    }
   }
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
-  // const onLoginInput = (e) => {
-  //   const { name, value } = e.target;
-  //   switch (name) {
-  //     case 'email': {
-  //       return setEmail(value)
-  //     }
-  //     case 'password': {
-  //       return setPassword(value)
-  //     }
-  //     default: return
-  //   }
-  // }
-
-  // const handleLoginSubmit = (e) => {
-  //   e.preventDefault()
-  //   const existUser = {
-  //     email,
-  //     password,
-  //   }
-
-  //   dispatch(login(existUser))
-  //   if (isLoggedIn) {
-  //     toast(`Hello, ${email}`)
-
-  //     dispatch(fetchContacts())
-  //     e.currentTarget.reset()
-  //   }
-  // }
-
 
   return (
     <>
       <StyledLoginForm
         onSubmit={handleSubmit(onSubmitReactHookForm)}
-        // onSubmit={handleLoginSubmit}
         autoComplete="off">
         <StyledLoginLabel >
           <TextField
@@ -83,9 +52,6 @@ export const LoginForm = () => {
             type="email"
             variant="filled"
             color="secondary"
-            // value={email}
-            // onChange={onLoginInput}
-            // name="email"
             {...register("email", { required: 'This field is required.' })}
           />
           <FormHelperText
@@ -96,7 +62,6 @@ export const LoginForm = () => {
               <Typography sx={{ color: 'error.main', fontSize: '12px' }}>{message}</Typography>
             )}
           />
-          <p>{errors.email?.message}</p>
         </StyledLoginLabel>
         <StyledLoginLabel >
           <TextField
@@ -106,9 +71,6 @@ export const LoginForm = () => {
             autoComplete="current-password"
             variant="filled"
             color="secondary"
-            // value={password}
-            // onChange={onLoginInput}
-            // name="password"
             {...register("password", { required: 'This field is required.' })}
             InputProps={{
               endAdornment: <InputAdornment position="end">
@@ -130,7 +92,6 @@ export const LoginForm = () => {
               <Typography sx={{ color: 'error.main', fontSize: "12px" }}>{message}</Typography>
             )}
           />
-          {/* <p>{errors.password?.message}</p> */}
         </StyledLoginLabel>
 
         <StyledLoginBtn

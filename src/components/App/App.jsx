@@ -6,10 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Layout } from "components/Layout";
 import { refreshUser } from "redux/auth/authOperations";
-import { selectIsRefreshing } from "redux/auth/authSelectors";
+import { selectIsLoggedIn, selectIsRefreshing } from "redux/auth/authSelectors";
 
 import { RestrictedRoute } from "components/RestrictedRoute";
 import { PrivateRoute } from "components/PrivateRoute";
+import { toast } from "react-toastify";
 
 
 const RegisterPage = lazy(() => import('../../pages/RegisterPage'));
@@ -20,10 +21,24 @@ const Phonebook = lazy(() => import('../../pages/Phonebook'));
 const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing)
+  const isLoggedIn = useSelector(selectIsLoggedIn)
 
   useEffect(() => {
-    dispatch(refreshUser())
-  }, [dispatch])
+    const token = localStorage.getItem('token')
+    if (isLoggedIn || !token) return
+
+    const refresh = async () => {
+      try {
+        await dispatch(refreshUser()).unwrap();
+        toast.success(`User refresh`)
+      } catch (error) {
+        toast.error(`Something went wrong... ${error}`)
+      }
+    }
+
+    refresh()
+    // dispatch(refreshUser())
+  }, [dispatch, isLoggedIn])
 
 
   /*

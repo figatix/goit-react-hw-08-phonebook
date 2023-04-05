@@ -63,7 +63,6 @@ const contactsSlice = createSlice({
         if (el.id === action.payload.id) {
           return action.payload;
         }
-
         return el;
       });
       state.error = null;
