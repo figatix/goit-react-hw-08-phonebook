@@ -37,53 +37,23 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
         state.isRefreshing = false;
-
-        // return {
-        //   ...state,
-        //   user: action.payload.user,
-        //   token: action.payload.token,
-        //   isLoggedIn: true,
-        //   isRefreshing: false,
-        // };
       })
       .addCase(logout.fulfilled, state => {
         state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
         state.isRefreshing = false;
-
-        // return {
-        //   ...state,
-        //   user: { name: null, email: null },
-        //   token: null,
-        //   isLoggedIn: false,
-        //   isRefreshing: false,
-        // };
       })
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
         state.isRefreshing = false;
-        // return {
-        //   ...state,
-        //   user: action.payload.user,
-        //   token: action.payload.token,
-        //   isLoggedIn: true,
-        //   isRefreshing: false,
-        // };
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
-
-        // return {
-        //   ...state,
-        //   user: action.payload,
-        //   isLoggedIn: true,
-        //   isRefreshing: false,
-        // };
       })
       .addMatcher(
         isAnyOf(

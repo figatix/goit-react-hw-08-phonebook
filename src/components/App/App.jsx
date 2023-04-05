@@ -24,21 +24,8 @@ const App = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn)
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (isLoggedIn || !token) return
-
-    const refresh = async () => {
-      try {
-        await dispatch(refreshUser()).unwrap();
-        toast.success(`User refresh`)
-      } catch (error) {
-        toast.error(`Something went wrong... ${error}`)
-      }
-    }
-
-    refresh()
-    // dispatch(refreshUser())
-  }, [dispatch, isLoggedIn])
+    dispatch(refreshUser())
+  }, [dispatch])
 
 
   /*
